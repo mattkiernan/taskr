@@ -6,13 +6,8 @@ class TasksController < ApplicationController
   end
 
   def create
-   @task =  current_user.tasks.new(task_params)
-   if @task.save 
-     redirect_to tasks_path
-   else
-     @tasks = current_user.tasks
-     render :index
-   end
+   @task =  current_user.tasks.create(task_params)
+   render @task 
   end
 
   def update
