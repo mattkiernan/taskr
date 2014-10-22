@@ -5,9 +5,15 @@ $(function(){
     var taskData = newTaskForm.serialize();
     var conversation = $.ajax({url: "/tasks", type: "POST", data: taskData });
     conversation.done(addTaskToList);
+    conversation.fail(onFailure);
     resetForm();
     return false;
   };
+
+  var onFailure = function(ajaxObject){
+    var html = ajaxObject.responseText;
+    $("#errors").html(html)
+  }
 
   var resetForm = function(){
     newTaskForm.find("#task_title, #task_description").val("");
@@ -15,7 +21,8 @@ $(function(){
   };
 
   var addTaskToList = function(task) {
-    var taskList = $("ul");
+    $("#errors").html("");
+    var taskList = $("ul#incomplete-tasks");
     taskList.prepend(task);
   };
 
