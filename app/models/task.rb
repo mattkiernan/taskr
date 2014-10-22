@@ -10,6 +10,5 @@ class Task < ActiveRecord::Base
   def self.complete
     where(completed:true)
   end
- 
 
 end

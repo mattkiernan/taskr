@@ -19,15 +19,15 @@ class TasksController < ApplicationController
   end
 
   def update
-    task = current_user.tasks.find(params[:id])
-    task.update(task_params)
-    redirect_to tasks_path
+    @task = current_user.tasks.find(params[:id])
+    @task.update(task_params)
+    render @task
   end
 
   def destroy
     task = current_user.tasks.find(params[:id])
     task.destroy
-    redirect_to tasks_path 
+    render nothing: true
   end
 
   private
