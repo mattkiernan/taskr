@@ -1,6 +1,7 @@
 $(function(){
 
   var postTaskDataToServer = function(){
+    
     var taskData = $(this).serialize();
     var conversation = $.ajax({
       type: "PATCH",
@@ -13,9 +14,9 @@ $(function(){
   };
 
   function onDone(taskHTML){
-    $("#complete-tasks").prepend(taskHTML);
+    $("#incomplete-tasks").prepend(taskHTML);
   }
 
-  $("body").on("submit", "form#complete-task", postTaskDataToServer);
+  $("body").on("submit", "form#incomplete-task", postTaskDataToServer)
 
 });

@@ -1,12 +1,15 @@
 <li>
   <%= task.title %> -- <%= task.description %>
-  <%= form_for task do |form| %> 
-    <%= form.hidden_field :completed, value: 1 %>
-    <%= if task.complete %>
-      <%= form.submit "Incomplete" %>
-    <% else %>
-        <%= form.submit "Comleted" %>
-      <% end %>
+  <% if task.completed %>
+    <%= form_for task, html:{id:"incomplete-task"} do |form| %> 
+    <%= form.hidden_field :completed, value: 0 %>
+    <%= form.submit "Incomplete" %>
+    <% end %>
+  <% else %>
+    <%= form_for task, html:{id:"complete-task"} do |form| %>
+      <%= form.hidden_field :completed, value: 1 %>
+      <%= form.submit "Complete" %>
+    <% end %>
   <% end %>
   <%= button_to "Delete", task_path(task), method: :delete %>
 </li>
