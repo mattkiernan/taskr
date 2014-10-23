@@ -13,7 +13,9 @@ $(function(){
   };
 
   function onDone(taskHTML){
-    $("#complete-tasks").prepend(taskHTML);
+    var element = $(taskHTML).hide();
+    $("#complete-task-list").prepend(element);
+    element.fadeIn("slow");
   }
 
   $("body").on("submit", "form#complete-task", postTaskDataToServer);

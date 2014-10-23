@@ -22,7 +22,7 @@ $(function(){
 
   var addTaskToList = function(task) {
     $("#errors").html("");
-    var taskList = $("ul#incomplete-tasks");
+    var taskList = $("ul#incomplete-task-list");
     taskList.prepend(task);
   };
 
